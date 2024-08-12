@@ -1,0 +1,56 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-md-6 mx-auto my-5">
+      <mat-card>
+        <mat-card-header>
+          <h3>Login</h3>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="w-100">
+            <mat-label for="Email">Email</mat-label>
+            <input matInput formControlName="email" >
+            @if(loginForm.get("email")?.invalid && loginForm.get("email")?.touched){
+              @if(loginForm.get("email")?.errors?.["required"]){
+                <span class="text-danger">please enter the email</span>
+              }@if(loginForm.get("email")?.errors?.["email"]){
+                <span class="text-danger">please enter the correct email</span>
+              }
+            }
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label for="password">password</mat-label>
+            <input matInput formControlName="password">
+            @if(loginForm.get("password")?.touched && loginForm.get("password")?.invalid){
+              <span class="text-danger">please enter the correct Password <strong>(ex:Da234)</strong></span>
+            }
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row w-100">
+            <div class="col-md-6">
+              <button type="submit" class=" w-100" mat-flat-button color="primary">Login</button>
+            </div>
+            <div class="col-md-6 ">
+              <div class="row">
+                <div class="col">
+                  <a routerLink="/Register" class=" w-100" mat-flat-button color="accent">Create New Account</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <a routerLink="/forgetPassword" class=" w-100"  mat-button color="primary">Forget Password</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+</form>

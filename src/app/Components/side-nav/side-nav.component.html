@@ -1,0 +1,43 @@
+@if(getCurrentUser()){
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Toy Store Management System</span>
+    <span style="flex: 1 1 auto;"></span>
+    @if(dispalyName.length > 1){
+      <span>welcome: {{dispalyName}}</span>
+    }
+    <button mat-button [matMenuTriggerFor]="profile"><mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #profile>
+      <button mat-menu-item routerLink="/user">UseProfile</button>
+      <button mat-menu-item routerLink="/resetPassword">ResetPassword</button>
+      <button mat-menu-item routerLink="/Login">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
+
+
+  <mat-drawer-container>
+    <mat-drawer #drawer mode="side" opened="true" position="start">
+      <mat-nav-list>
+        <mat-list-item>
+           <button mat-button routerLink = "Home"> <mat-icon>home</mat-icon>Home</button>
+          </mat-list-item>
+          <!-- @for (item of menus; track $index) {
+            <mat-list-item>
+              <button mat-button routerLink = "{{item.name}}"> <mat-icon>home</mat-icon>{{item.name}}</button>
+            </mat-list-item>
+          } -->
+       </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <div class="mx-5 mt-5" style="text-align: center; min-height: 600px;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+}@else {
+  <app-login></app-login>
+}
