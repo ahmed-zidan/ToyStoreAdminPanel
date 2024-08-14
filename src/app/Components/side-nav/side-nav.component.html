@@ -1,4 +1,4 @@
-@if(getCurrentUser()){
+@if(dispalyName.length > 0){
   <mat-toolbar color="primary" class="mat-elevation-z8">
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
@@ -12,7 +12,7 @@
     <mat-menu #profile>
       <button mat-menu-item routerLink="/user">UseProfile</button>
       <button mat-menu-item routerLink="/resetPassword">ResetPassword</button>
-      <button mat-menu-item routerLink="/Login">Logout</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </mat-toolbar>
 
@@ -20,14 +20,14 @@
   <mat-drawer-container>
     <mat-drawer #drawer mode="side" opened="true" position="start">
       <mat-nav-list>
-        <mat-list-item>
+        <!-- <mat-list-item>
            <button mat-button routerLink = "Home"> <mat-icon>home</mat-icon>Home</button>
-          </mat-list-item>
-          <!-- @for (item of menus; track $index) {
+        </mat-list-item> -->
+          @for (item of menus; track $index) {
             <mat-list-item>
-              <button mat-button routerLink = "{{item.name}}"> <mat-icon>home</mat-icon>{{item.name}}</button>
+              <button mat-button routerLink = "{{item.userName}}"> <mat-icon>home</mat-icon>{{item.name}}</button>
             </mat-list-item>
-          } -->
+          }
        </mat-nav-list>
     </mat-drawer>
 
@@ -39,5 +39,6 @@
 
   </mat-drawer-container>
 }@else {
-  <app-login></app-login>
+  <!-- <router-outlet></router-outlet> -->
+    <app-login></app-login>
 }

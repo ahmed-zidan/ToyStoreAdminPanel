@@ -11,11 +11,14 @@ export class AccountService {
   constructor(private http:HttpClient) { }
 
   getCurrentUser(){
-    return JSON.parse(localStorage.getItem("userInfo") as string) as userInfo;
+    return JSON.parse(localStorage.getItem(environment.currUserKey) as string) as userInfo;
   }
 
+  DeletCurrentUser(){
+    localStorage.removeItem(environment.currUserKey);
+  }
   setCurrentUser(user:userInfo){
-    return localStorage.setItem("userInfo",JSON.stringify(user));
+     localStorage.setItem(environment.currUserKey,JSON.stringify(user));
   }
 
 
