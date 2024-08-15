@@ -1,0 +1,11 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+    <li [class.disabled]="currActive == 1" class="page-item"><button class="page-link" (click)="increaseOrDecreas(currActive-1)">Previous</button></li>
+    @for (item of items; track $index) {
+      <li class="page-item"><button (click)="pageIdxChange(item)" class="page-link" [class.active]="currActive == item" >{{item}}</button></li>
+    }
+
+    <li [class.disabled]="currActive == items[items.length-1]" class="page-item"><button class="page-link" (click)="increaseOrDecreas(currActive+1)" >Next</button></li>
+  </ul>
+</nav>

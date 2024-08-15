@@ -1,1 +1,54 @@
-<p>category works!</p>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h2>Category</h2>
+      </div>
+      <div class="card-body">
+        <div class="row my-4">
+          <div class="col text-start">
+            <button mat-flat-button color="primary" (click)="addNewCategory()">Add New Category</button>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <input class="form-control text-center" placeholder="Filter" [(ngModel)]="textFilter">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th></th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+              </tr>
+            </thead>
+              <tbody>
+              @for (item of categories|filter:textFilter:'name':'description':'id'; track $index) {
+                <tr>
+                <td>{{item.id}}</td>
+                <td><img src="{{item.image}}" width="70" alt="_img"/></td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>
+                  <button mat-icon-button (click)="delete(item)" ><mat-icon color="accent">delete</mat-icon></button>
+                  <button mat-icon-button (click)="update(item)" ><mat-icon class="text-success">edit</mat-icon></button>
+                </td>
+              </tr>
+              }
+            </tbody>
+            </table>
+            <!-- @if(categories){
+            <app-pagination [totalPages]="6" [currActive]="activeIdx" (pageChanged)="pageIdxChanged($event)"></app-pagination>
+            } -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
