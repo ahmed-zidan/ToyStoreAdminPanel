@@ -7,6 +7,7 @@ import { CategoryComponent } from './Components/category/category.component';
 import { UserManagerComponent } from './Components/user-manager/user-manager.component';
 import { RoleManagerComponent } from './Components/role-manager/role-manager.component';
 import { MenuManagerComponent } from './Components/menu-manager/menu-manager.component';
+import { AddCategoryComponent } from './Components/add-category/add-category.component';
 
 export const routes: Routes = [
 
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {path:"RoleManager" , component:RoleManagerComponent},
   {path:"MenuManager" , component:MenuManagerComponent},
   {path:"Home" , component:HomeComponent},
+  {path:"Category/AddCategory" , component:AddCategoryComponent},
   {path:"**" , component:WelcomeComponent}
 
 ];

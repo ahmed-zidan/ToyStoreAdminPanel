@@ -20,18 +20,15 @@
   <mat-drawer-container>
     <mat-drawer #drawer mode="side" opened="true" position="start">
       <mat-nav-list>
-        <!-- <mat-list-item>
-           <button mat-button routerLink = "Home"> <mat-icon>home</mat-icon>Home</button>
-        </mat-list-item> -->
           @for (item of menus; track $index) {
-            <mat-list-item>
-              <button mat-button routerLink = "{{item.userName}}"> <mat-icon>home</mat-icon>{{item.name}}</button>
+            <mat-list-item routerLink = "{{item.userName}}">
+              <button mat-button> <mat-icon>home</mat-icon>{{item.name}}</button>
             </mat-list-item>
           }
        </mat-nav-list>
     </mat-drawer>
 
-    <mat-drawer-content>
+    <mat-drawer-content @animateContents>
       <div class="mx-5 mt-5" style="text-align: center; min-height: 600px;">
         <router-outlet></router-outlet>
       </div>

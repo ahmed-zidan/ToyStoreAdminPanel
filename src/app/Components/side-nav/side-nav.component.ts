@@ -6,13 +6,15 @@ import { MaterialModule } from '../../MaterialModule';
 import { LoginComponent } from '../login/login.component';
 import { MenuService } from '../../services/menu.service';
 import { Menu, menuAccess } from '../../Models/Menu';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-side-nav',
   standalone: true,
   imports: [MaterialModule,RouterOutlet,LoginComponent,RouterLink],
   templateUrl: './side-nav.component.html',
-  styleUrl: './side-nav.component.css'
+  styleUrl: './side-nav.component.css',
+
 })
 export class SideNavComponent implements OnInit {
   dispalyName:string = "";

@@ -1,8 +1,46 @@
-
 <form [formGroup]="categoryForm" (ngSubmit)="submit()">
-<div class="row">
-  <div class="col">
+  <div class="row my-4">
+    <div class="col-md-10 mx-auto">
+      <mat-card>
+        <mat-card-header>
+          <h2>Category</h2>
+        </mat-card-header>
+        <mat-card-content>
+          @if(this.currid != 0){
+        <mat-form-field class="w-100">
+          <mat-label for="id">ID</mat-label>
+          <input formControlName="id" [readonly]="true" matInput>
+        </mat-form-field>
+      }
+        <mat-form-field class="w-100">
+          <mat-label for="name">name</mat-label>
+          <input formControlName="name" matInput>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label for="description">description</mat-label>
+          <input formControlName="description" matInput>
+        </mat-form-field>
 
+        <img style="width: 8vw;" src="{{(categoryForm.get('photoUrl')?.value != null ? categoryForm.get('photoUrl')?.value:'')}}"
+        class="card-img-top img-thumbnail" alt="...">
+
+        <div class="row" style="margin-bottom:15px;">
+          <div class="col-md">
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" mat-button color="primary" (click)="file.click()"><mat-icon>upload</mat-icon>Upload Image</button>
+            @if (categoryForm.get("image")?.value != null && categoryForm.get("image")?.invalid) {
+              <span class="text-danger">should be image</span>
+            }
+          </div>
+
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="w-100 mx-1" color="accent" type="submit" [disabled]="(this.currid>0 && categoryForm.get('image')?.value != null&&categoryForm.invalid)||(this.currid<=0 &&categoryForm.invalid )" mat-flat-button>submit</button>
+        <button class="w-100 mx-1" color="primary" type="button" (click)="close()" mat-flat-button>Cancel</button>
+      </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-</div>
 </form>

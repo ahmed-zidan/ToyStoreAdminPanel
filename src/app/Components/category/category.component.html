@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" >
   <div class="col">
     <div class="card">
       <div class="card-header">
@@ -8,7 +8,7 @@
       <div class="card-body">
         <div class="row my-4">
           <div class="col text-start">
-            <button mat-flat-button color="primary" (click)="addNewCategory()">Add New Category</button>
+            <button mat-flat-button color="primary" (click)="addOrUpdateCategory(0)">Add New Category</button>
           </div>
         </div>
         <div class="row mb-2">
@@ -18,7 +18,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <table class="table table-striped">
+            <table class="table table-striped" @animateContents>
               <thead>
               <tr>
                 <th></th>
@@ -37,7 +37,7 @@
                 <td>{{item.description}}</td>
                 <td>
                   <button mat-icon-button (click)="delete(item)" ><mat-icon color="accent">delete</mat-icon></button>
-                  <button mat-icon-button (click)="update(item)" ><mat-icon class="text-success">edit</mat-icon></button>
+                  <button mat-icon-button (click)="addOrUpdateCategory(item.id)" ><mat-icon class="text-success">edit</mat-icon></button>
                 </td>
               </tr>
               }
