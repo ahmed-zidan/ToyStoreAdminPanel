@@ -7,11 +7,12 @@ import { LoginComponent } from '../login/login.component';
 import { MenuService } from '../../services/menu.service';
 import { Menu, menuAccess } from '../../Models/Menu';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [MaterialModule,RouterOutlet,LoginComponent,RouterLink],
+  imports: [MaterialModule,RouterOutlet,LoginComponent,RouterLink,NgxSpinnerModule],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css',
 

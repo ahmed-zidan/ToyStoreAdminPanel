@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { MaterialModule } from '../../MaterialModule';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from '../../services/category.service';
@@ -6,10 +6,13 @@ import { ICategoryDto } from '../../Models/Category';
 import { PaginationComponent } from "../pagination/pagination.component";
 import { FilterPipe } from '../../Pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCategoryComponent } from '../add-category/add-category.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { animateLeft, animateRight } from '../../animations/animationFile';
+import { menuAccess } from '../../Models/Menu';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-category',
@@ -17,26 +20,20 @@ import { animate, style, transition, trigger } from '@angular/animations';
   imports: [MaterialModule, PaginationComponent,FilterPipe,FormsModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css',
-  animations:[
-    trigger('animateContents',[
-      transition(":enter",[
-        style({opacity:0 , transform:'scale(0.5)'}),
-        animate('0.5s ease-out' , style({opacity:1 , transform:"scale(1)"}))
-      ]),
-      transition(":leave" , [
-        animate("0.5s ease-in" , style({opacity:0 , transform:"scale(0.5)"}))
-      ])
-    ])
-  ]
+  animations:[animateLeft , animateRight]
 })
 export class CategoryComponent implements OnInit {
   categories!:ICategoryDto[];
   activeIdx = 1;
   textFilter = "";
+  access!:menuAccess;
   constructor(private _toast:ToastrService,private _category:CategoryService,private _router:Router,
-    private dialog:MatDialog
+    private dialog:MatDialog,private _menu:MenuService
   ){
-
+    effect(()=>{
+      this.access = _menu._accessMenu();
+      //console.log(this.access);
+    })
   }
   ngOnInit(): void {
     this.refreshCategories();

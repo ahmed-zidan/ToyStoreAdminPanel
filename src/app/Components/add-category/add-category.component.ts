@@ -27,7 +27,6 @@ export class AddCategoryComponent implements OnInit {
     _category.getCategory(this.currid).subscribe({
       next:res=>{
         this.category = res as ICategoryDto;
-        console.log(this.category);
         this.categoryForm = new FormGroup(
           {
 

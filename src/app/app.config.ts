@@ -6,8 +6,9 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { errorInterceptor } from './services/error.interceptor';
 import { tokenInterceptor } from './services/token.interceptor';
+import { loadingInterceptor } from './services/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([errorInterceptor,tokenInterceptor])), provideToastr({closeButton:true})]
+    provideHttpClient(withInterceptors([errorInterceptor,tokenInterceptor,loadingInterceptor])), provideToastr({closeButton:true})]
 };

@@ -18,7 +18,7 @@
 
 
   <mat-drawer-container>
-    <mat-drawer #drawer mode="side" opened="true" position="start">
+    <mat-drawer #drawer mode="side" opened="false"  position="start">
       <mat-nav-list>
           @for (item of menus; track $index) {
             <mat-list-item routerLink = "{{item.userName}}">
@@ -28,7 +28,7 @@
        </mat-nav-list>
     </mat-drawer>
 
-    <mat-drawer-content @animateContents>
+    <mat-drawer-content>
       <div class="mx-5 mt-5" style="text-align: center; min-height: 600px;">
         <router-outlet></router-outlet>
       </div>

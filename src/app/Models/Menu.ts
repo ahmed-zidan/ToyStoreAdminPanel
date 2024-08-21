@@ -8,8 +8,8 @@ export interface Menu{
 export interface menuAccess{
   Id:number;
    MenuId:number;
- HaveView   :boolean;
- HaveAdd :boolean;
- HaveEdit :boolean;
- HaveDelete :boolean;
+ haveView   :boolean;
+ haveAdd :boolean;
+ haveEdit :boolean;
+ haveDelete :boolean;
 }
