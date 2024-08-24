@@ -1,1 +1,128 @@
-<p>product works!</p>
+@if(products){
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card my-2">
+        <div class="card-header">
+          <h2>Products</h2>
+        </div>
+        <div class="card-body">
+          <div class="row my-4 text-start">
+            <div class="col">
+              <button mat-flat-button color="primary" (click)="addNewProduct()"><mat-icon>add</mat-icon>Add New Product</button>
+            </div>
+          </div>
+          <div class="row" @animatePopUp>
+            <div class="col-md-2">
+              <mat-form-field>
+                <mat-label>Categories</mat-label>
+                <mat-select (valueChange)="categoryChanged($event)" [(ngModel)]="activeCatId">
+                  @if (categories) {
+                  @for (item of categories; track $index) {
+                    <mat-option [value]="item.id">
+                      {{item.name}}
+                    </mat-option>
+                  }
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-10">
+              <mat-form-field class="w-100">
+                <mat-label>Filter</mat-label>
+                <input matInput class="w-100" [(ngModel)]="textFilter">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+
+              <table class="table table-striped">
+                <thead>
+                  <tr >
+                    <th></th>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>mainPrice</th>
+                    <th>sellPrice</th>
+                    <th>isSale</th>
+                    <th>isNew</th>
+                    <th>colors</th>
+                    <th>sizes</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (item of products.products|filter:textFilter:'name':'description':'id'; track $index) {
+                    @if($index %2==0){
+                    <tr @animateRight>
+                      <td>{{item.id}}</td>
+                      <td><img src="{{item.imageUrl}}" width="50px" /></td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.mainPrice}}</td>
+                      <td>{{item.sellPrice}}</td>
+                      <td>{{item.isSale}}</td>
+                      <td>{{item.isNew}}</td>
+                      <td>
+                      @for (color of item.colors; track $index) {
+                        <b class="mx-1" style="background-color:'{{color.colorCode}}';border-radius: 50%;"></b>
+                      }
+                    </td>
+                    <td>
+                      @for (size of item.sizes; track $index) {
+                        <b class="mx-1" style="background-color:gray;border-radius: 50%;">{{size.name}}</b>
+                      }
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent"><mat-icon>delete</mat-icon></button>
+                      <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+                    </td>
+                    </tr>
+                  }@else {
+                    <tr @animateLeft>
+                      <td>{{item.id}}</td>
+                      <td><img src="{{item.imageUrl}}" width="50px" /></td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.mainPrice}}</td>
+                      <td>{{item.sellPrice}}</td>
+                      <td>{{item.isSale}}</td>
+                      <td>{{item.isNew}}</td>
+                      <td>
+                      @for (color of item.colors; track $index) {
+                        <b class="mx-1" style="background-color:'{{color.colorCode}}';border-radius: 50%;"></b>
+                      }
+                    </td>
+                    <td>
+                      @for (size of item.sizes; track $index) {
+                        <b class="mx-1" style="background-color:gray;border-radius: 50%;">{{size.name}}</b>
+                      }
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent"><mat-icon>delete</mat-icon></button>
+                      <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+                    </td>
+                    </tr>
+                  }
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+            @if(products){
+            <app-pagination [totalPages]="products.pageCount" [currActive]="products.pageNumber+1" (pageChanged)="pageIdxChanged($event)"></app-pagination>
+            }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

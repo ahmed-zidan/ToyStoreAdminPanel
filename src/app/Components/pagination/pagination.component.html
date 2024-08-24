@@ -6,6 +6,6 @@
       <li class="page-item"><button (click)="pageIdxChange(item)" class="page-link" [class.active]="currActive == item" >{{item}}</button></li>
     }
 
-    <li [class.disabled]="currActive == items[items.length-1]" class="page-item"><button class="page-link" (click)="increaseOrDecreas(currActive+1)" >Next</button></li>
+    <li [class.disabled]="currActive >= items[items.length-1]" class="page-item"><button class="page-link" (click)="increaseOrDecreas(currActive+1)" >Next</button></li>
   </ul>
 </nav>

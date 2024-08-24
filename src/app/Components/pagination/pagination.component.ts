@@ -17,7 +17,7 @@ export class PaginationComponent implements OnInit {
     let start = this.totalPages-5 >0 ?this.totalPages-5 : 0;
     let end =  this.currActive+5 > this.totalPages ? this.totalPages : this.currActive+5;
     for(let i = start;i<end;i++){
-      this.items.push(i);
+      this.items.push(i+1);
     }
   }
 
@@ -27,5 +27,6 @@ export class PaginationComponent implements OnInit {
   increaseOrDecreas(currActive:number){
     this.pageChanged.emit(currActive);
   }
+
 
 }

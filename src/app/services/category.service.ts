@@ -25,8 +25,13 @@ export class CategoryService {
     return this.http.get(environment.apiUrl + "Category/getAll");
   }
 
+  getCategoriesNameAndIds(){
+    return this.http.get(environment.apiUrl + "Category/getCategoriesNamesAndId");
+  }
+
   getCategory(id:number){
     return this.http.get(environment.apiUrl + "Category/getCategory/"+id);
   }
+
 
 }

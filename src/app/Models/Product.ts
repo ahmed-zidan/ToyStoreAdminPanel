@@ -29,8 +29,21 @@ export interface Product {
   categotyId: number
   categoryName: string
   imageUrl: string
-  colors: any[]
-  sizes: any[]
+  colors: Color[]
+  sizes: Size[]
+}
+
+
+
+export interface Color{
+  id:number;
+  name:string;
+  colorCode:string;
+}
+
+export interface Size{
+  id:number;
+  name:string;
 }
 
 
