@@ -1,1 +1,166 @@
-<p>add-product works!</p>
+@if(productForm){
+<div class="container">
+  <div class="row my-4">
+    <div class="col-md-10 mx-auto">
+      <mat-card>
+        <mat-card-header>
+          <h2>Product</h2>
+        </mat-card-header>
+        <mat-card-content>
+
+
+          <mat-stepper [linear]="false" #stepper>
+            <mat-step [stepControl]="productForm">
+              <form [formGroup]="productForm" (submit)="submitForm()">
+                <ng-template matStepLabel>Info</ng-template>
+                @if(currId>0){
+                <mat-form-field class="w-100">
+                  <mat-label for="id">ID</mat-label>
+                  <input formControlName="id" [readonly]="true" matInput>
+                </mat-form-field>
+                }
+                <mat-form-field class="w-100">
+                  <mat-label for="name">name</mat-label>
+                  <input formControlName="name" matInput>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <mat-label for="description">description</mat-label>
+                  <textarea formControlName="description" matInput></textarea>
+                </mat-form-field>
+
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="productForm" label="Category">
+              <form [formGroup]="productForm">
+                @if(categories){
+                <mat-form-field class="w-100">
+                  <mat-label>Categories</mat-label>
+                  <mat-select formControlName="categotyId">
+                    @if (categories) {
+                    @for (item of categories; track $index) {
+                    <mat-option [value]="item.id">
+                      {{item.name}}
+                    </mat-option>
+                    }
+                    }
+                  </mat-select>
+                </mat-form-field>
+                }
+                @if (colors) {
+                <h3>Colors</h3>
+                <div class="toggle-container">
+                <mat-button-toggle-group name="ingredients" formControlName="colorsData" aria-label="Ingredients" multiple>
+                  @for (item of colors; track $index) {
+                    <mat-button-toggle [style.background-color]="item.colorCode" value="{{item.id}}">{{item.name}}</mat-button-toggle>
+                  }
+                </mat-button-toggle-group>
+                </div>
+
+                }
+                @if (sizes) {
+                  <h3>Sizes</h3>
+                  <div class="toggle-container">
+                  <mat-button-toggle-group name="ingredients" formControlName="sizesData" aria-label="Ingredients" multiple>
+                    @for (item of sizes; track $index) {
+                      <mat-button-toggle value="{{item.id}}">{{item.name}}</mat-button-toggle>
+                    }
+                  </mat-button-toggle-group>
+                </div>
+
+                  }
+                <div class="mt-2">
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="productForm" label="Prices">
+              <form [formGroup]="productForm">
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Main Price" type="number" formControlName="mainPrice"
+                    class="example-right-align">
+                  <span matPrefix>$&nbsp;</span>
+                  <span matSuffix>.00</span>
+                </mat-form-field>
+
+                <mat-form-field class="w-100">
+                  <input matInput placeholder="Sell Price" type="number" formControlName="sellPrice"
+                    class="example-right-align">
+                  <span matPrefix>$&nbsp;</span>
+                  <span matSuffix>.00</span>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="productForm" label="Image">
+              <form [formGroup]="productForm">
+                <img style="width: 8vw;"
+                  src="{{(productForm.get('imageUrl')?.value != null ? productForm.get('imageUrl')?.value:'')}}"
+                  class="card-img-top img-thumbnail" alt="...">
+
+                <div class="row" style="margin-bottom:15px;">
+                  <div class="col-md">
+                    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                      style="display:none;">
+                    <button type="button" mat-button color="primary"
+                      (click)="file.click()"><mat-icon>upload</mat-icon>Upload Image</button>
+                    @if (productForm.get("image")?.value != null && productForm.get("image")?.invalid) {
+                    <span class="text-danger">should be image</span>
+                    }
+                  </div>
+
+                </div>
+
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <div>
+                  <button class="w-30 mx-1" color="accent" type="submit"
+                    [disabled]="(this.currId>0 && productForm.get('image')?.value != null&&productForm.invalid)||(this.currId<=0 &&productForm.invalid )"
+                    mat-flat-button>submit</button>
+                  <button class="w-30 mx-1" color="primary" type="button" (click)="close()"
+                    mat-flat-button>Cancel</button>
+                </div>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+              </div>
+            </mat-step>
+          </mat-stepper>
+
+
+
+
+
+          @if(sizes){
+
+          }
+          @if(colors){
+
+          }
+
+
+
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+}

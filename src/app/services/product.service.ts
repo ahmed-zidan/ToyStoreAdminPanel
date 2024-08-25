@@ -16,7 +16,7 @@ export class ProductService {
     return this.http.post(environment.apiUrl + "Product/getAllProducts",pagination)
   }
 
-  getProduct(id:string){
+  getProduct(id:number){
     return this.http.get(environment.apiUrl + "Product/getProduct/"+id)
   }
 

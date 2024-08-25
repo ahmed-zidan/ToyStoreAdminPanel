@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterPipe } from '../../Pipes/filter.pipe';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'app-product',
@@ -57,8 +58,19 @@ fillCategories(){
   })
 }
 
-addNewProduct(){
-
+addNewProduct(currId = 0){
+  this.dialog.open(AddProductComponent,{
+    width:'60%',
+    enterAnimationDuration:'100ms',
+    exitAnimationDuration:'100ms',
+    data:{
+      currid : currId
+    }
+  }).afterClosed().subscribe({
+    next:res=>{
+      //this.refreshCategories();
+    }
+  });
 }
 
 pageIdxChanged(event:number){
