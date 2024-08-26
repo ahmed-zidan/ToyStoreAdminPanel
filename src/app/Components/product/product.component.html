@@ -65,19 +65,24 @@
                       <td>{{item.sellPrice}}</td>
                       <td>{{item.isSale}}</td>
                       <td>{{item.isNew}}</td>
-                      <td>
+                      <td >
+                        <div class="justify-content-center d-flex">
                       @for (color of item.colors; track $index) {
-                        <b class="mx-1" style="background-color:'{{color.colorCode}}';border-radius: 50%;"></b>
+
+                        <p class="mx-1" [style.backgroundColor]="color.colorCode" style="border-radius: 50%;width: 20px;height: 20px;"></p>
                       }
+                    </div>
                     </td>
                     <td>
+                      <div class="justify-content-center d-flex">
                       @for (size of item.sizes; track $index) {
-                        <b class="mx-1" style="background-color:gray;border-radius: 50%;">{{size.name}}</b>
+                        <b class="mx-1" style="width: 20px;height: 20px;background-color:rgb(184, 183, 183);border-radius: 50%;">{{size.name}}</b>
                       }
+                    </div>
                     </td>
                     <td>
                       <button mat-icon-button color="accent"><mat-icon>delete</mat-icon></button>
-                      <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+                      <button mat-icon-button (click)="updateData(item.id)" color="primary"><mat-icon>edit</mat-icon></button>
                     </td>
                     </tr>
                   }@else {

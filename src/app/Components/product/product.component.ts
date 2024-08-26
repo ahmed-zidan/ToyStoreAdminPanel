@@ -43,6 +43,7 @@ fillProducts(){
   this._product.getProducts(this.productSearch).subscribe({
     next:res=>{
       this.products = res as ProductList;
+      console.log(this.products);
     }
   })
 }
@@ -59,12 +60,20 @@ fillCategories(){
 }
 
 addNewProduct(currId = 0){
+ this.openProductItem(currId);
+}
+
+updateData(id:number){
+  this.openProductItem(id);
+}
+
+openProductItem(id:number){
   this.dialog.open(AddProductComponent,{
     width:'60%',
     enterAnimationDuration:'100ms',
     exitAnimationDuration:'100ms',
     data:{
-      currid : currId
+      currid : id
     }
   }).afterClosed().subscribe({
     next:res=>{

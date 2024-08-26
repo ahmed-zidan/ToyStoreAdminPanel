@@ -17,12 +17,13 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatSlider, MatSliderModule} from '@angular/material/slider';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   exports:[
     MatSelectModule,MatInputModule,MatFormFieldModule,MatCardModule,MatButtonModule,MatToolbarModule,MatSidenavModule,MatListModule,
     MatIconModule,MatMenuModule,MatPaginatorModule,MatSortModule,MatTableModule,MatButtonToggleModule,MatRadioModule,MatDialogModule,
-    MatCheckboxModule,MatStepperModule,MatSliderModule
+    MatCheckboxModule,MatStepperModule,MatSliderModule,MatSlideToggleModule
   ]
 }
 )

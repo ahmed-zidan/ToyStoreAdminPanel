@@ -21,10 +21,11 @@ export class ProductService {
   }
 
   addProduct(productForm:any){
+    console.log(productForm);
     return this.http.post(environment.apiUrl + "Product/addProduct",productForm)
   }
-  updateProduct(productForm:any){
-    return this.http.put(environment.apiUrl + "Product/updateProduct",productForm)
+  updateProduct(productId:number,productForm:any){
+    return this.http.put(environment.apiUrl + "Product/updateProduct/"+productId,productForm)
   }
 
   deleteProduct(id:number){

@@ -23,13 +23,19 @@
                   <mat-label for="name">name</mat-label>
                   <input formControlName="name" matInput>
                 </mat-form-field>
+                <mat-slide-toggle formControlName="isNew" class="mx-4"  color="accent">
+                  Is New
+                </mat-slide-toggle>
+                <mat-slide-toggle formControlName="isSale" class="mx-4" color="accent">
+                  Is Sale
+                </mat-slide-toggle>
                 <mat-form-field class="w-100">
                   <mat-label for="description">description</mat-label>
                   <textarea formControlName="description" matInput></textarea>
                 </mat-form-field>
 
                 <div>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button type="button" matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
@@ -72,8 +78,8 @@
 
                   }
                 <div class="mt-2">
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button type="button" matStepperPrevious>Back</button>
+                  <button mat-button type="button" matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
@@ -93,8 +99,8 @@
                   <span matSuffix>.00</span>
                 </mat-form-field>
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button type="button" matStepperPrevious>Back</button>
+                  <button mat-button type="button" matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
@@ -118,41 +124,36 @@
                 </div>
 
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button type="button" matStepperPrevious>Back</button>
+                  <button mat-button type="button" matStepperNext>Next</button>
                 </div>
               </form>
             </mat-step>
             <mat-step>
+              <form [formGroup]="productForm" (submit)="submitForm()">
               <ng-template matStepLabel>Done</ng-template>
+              @if (errors) {
+                @for (item of errors; track $index) {
+                  <mat-error>{{item}}</mat-error>
+                }
+              }
               <p>You are now done.</p>
               <div>
                 <div>
                   <button class="w-30 mx-1" color="accent" type="submit"
                     [disabled]="(this.currId>0 && productForm.get('image')?.value != null&&productForm.invalid)||(this.currId<=0 &&productForm.invalid )"
                     mat-flat-button>submit</button>
-                  <button class="w-30 mx-1" color="primary" type="button" (click)="close()"
+                  <button class="w-30 mx-1" type="button" color="primary" type="button" (click)="close()"
                     mat-flat-button>Cancel</button>
                 </div>
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button (click)="stepper.reset()">Reset</button>
+                  <button mat-button type="button" matStepperPrevious>Back</button>
+                  <button mat-button type="button" (click)="stepper.reset()">Reset</button>
                 </div>
               </div>
+              </form>
             </mat-step>
           </mat-stepper>
-
-
-
-
-
-          @if(sizes){
-
-          }
-          @if(colors){
-
-          }
-
 
 
         </mat-card-content>

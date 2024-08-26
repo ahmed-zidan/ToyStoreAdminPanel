@@ -23,7 +23,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           toast.error(error.message , 'error');
         }
       }
-      return throwError(req);
+      return throwError(error);
     })
   )
 
